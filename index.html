@@ -42,6 +42,7 @@
             overflow-x: hidden;
         }
 
+        /* Background Effects */
         .bg-effects {
             position: fixed;
             top: 0;
@@ -61,6 +62,7 @@
                 radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.1) 0%, transparent 40%);
         }
 
+        /* Language Selector */
         .language-page {
             min-height: 100vh;
             display: flex;
@@ -86,52 +88,43 @@
         }
 
         .logo-container {
-            width: 120px;
-            height: 120px;
+            width: 180px;
+            height: 180px;
             margin: 0 auto 30px;
             position: relative;
         }
 
-        .logo-circle {
+        .profile-image-circle {
             width: 100%;
             height: 100%;
-            background: var(--gradient);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 42px;
-            font-weight: 800;
-            color: white;
-            position: relative;
-            z-index: 2;
             overflow: hidden;
+            position: relative;
+            border: 4px solid var(--primary);
+            box-shadow: 
+                0 0 40px rgba(59, 130, 246, 0.3),
+                0 0 80px rgba(139, 92, 246, 0.2);
             animation: float 6s ease-in-out infinite;
         }
 
-        .logo-circle::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(
-                transparent,
-                rgba(255, 255, 255, 0.2),
-                transparent 30%
-            );
-            animation: rotate 4s linear infinite;
+        .profile-image-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        .logo-circle span {
-            position: relative;
-            z-index: 3;
-            background: rgba(0, 0, 0, 0.7);
-            width: 100px;
-            height: 100px;
+        .profile-glow {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: var(--gradient);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            filter: blur(20px);
+            opacity: 0.3;
+            z-index: -1;
+            animation: glowPulse 3s ease-in-out infinite;
         }
 
         .language-card h1 {
@@ -250,12 +243,14 @@
             }
         }
 
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
+        @keyframes glowPulse {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
             }
-            to {
-                transform: rotate(360deg);
+            50% {
+                opacity: 0.5;
+                transform: scale(1.05);
             }
         }
 
@@ -270,17 +265,8 @@
             }
 
             .logo-container {
-                width: 100px;
-                height: 100px;
-            }
-
-            .logo-circle {
-                font-size: 36px;
-            }
-
-            .logo-circle span {
-                width: 80px;
-                height: 80px;
+                width: 150px;
+                height: 150px;
             }
 
             .lang-btn {
@@ -298,17 +284,8 @@
             }
 
             .logo-container {
-                width: 90px;
-                height: 90px;
-            }
-
-            .logo-circle {
-                font-size: 32px;
-            }
-
-            .logo-circle span {
-                width: 70px;
-                height: 70px;
+                width: 120px;
+                height: 120px;
             }
         }
     </style>
@@ -321,8 +298,11 @@
     <div class="language-page">
         <div class="language-card">
             <div class="logo-container">
-                <div class="logo-circle">
-                    <span>AR</span>
+                <div class="profile-glow"></div>
+                <div class="profile-image-circle">
+                    <img src="https://scontent.fcai23-1.fna.fbcdn.net/v/t39.30808-6/621655206_2344021316024708_3178221332365404789_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=wP1PDbMeqlsQ7kNvwH27gdM&_nc_oc=AdlTIo6cMtVMmZaHsCyfmVrMH1_7rez45lrSAWax9obMQSjjAl3UwTn5KGMRbsRM_OA&_nc_zt=23&_nc_ht=scontent.fcai23-1.fna&_nc_gid=975mWmBi3Bpgk_w0rayDvw&oh=00_AfvT_IcTAYCx1dxjd26M-8kFN-aTTDa9-rIKLK8UUcwG_w&oe=698EE75B" 
+                         alt="أحمد رضوان"
+                         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22><rect width=%22400%22 height=%22400%22 fill=%22%231a1a2e%22/><text x=%22200%22 y=%22200%22 font-family=%22Cairo%22 font-size=%2248%22 fill=%22%233b82f6%22 text-anchor=%22middle%22 dy=%22.3em%22>AR</text></svg>'">
                 </div>
             </div>
             <h1>أحمد رضوان</h1>
