@@ -42,6 +42,7 @@
             overflow-x: hidden;
         }
 
+        /* Background Effects */
         .bg-effects {
             position: fixed;
             top: 0;
@@ -61,47 +62,96 @@
                 radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.1) 0%, transparent 40%);
         }
 
+        /* Navigation - Updated */
         .navbar {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(10, 10, 20, 0.95);
+            background: rgba(10, 10, 20, 0.98);
             backdrop-filter: blur(20px);
             z-index: 1000;
-            padding: 20px 40px;
+            padding: 15px 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .nav-logo {
-            font-size: 24px;
-            font-weight: 700;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* Profile Dropdown in Header */
+        .profile-dropdown {
+            position: relative;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .logo-circle-small {
-            width: 40px;
-            height: 40px;
-            background: var(--gradient);
+        .nav-profile-img {
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            font-weight: 800;
-            color: white;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
+        .nav-profile-img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(20, 20, 30, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 12px;
+            padding: 15px 0;
+            min-width: 220px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 12px 25px;
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            color: var(--light);
+            background: rgba(59, 130, 246, 0.1);
+            padding-left: 30px;
+        }
+
+        .dropdown-content a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .profile-dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Navigation Links */
         .nav-links {
             display: flex;
             gap: 25px;
@@ -115,6 +165,7 @@
             padding: 8px 16px;
             border-radius: 8px;
             transition: all 0.3s ease;
+            position: relative;
         }
 
         .nav-link:hover {
@@ -122,11 +173,28 @@
             background: rgba(59, 130, 246, 0.1);
         }
 
-        .nav-link:active {
-            transform: scale(0.95);
-            background: rgba(59, 130, 246, 0.15);
+        .nav-link.active {
+            color: var(--primary);
+            background: rgba(59, 130, 246, 0.1);
         }
 
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 70%;
+        }
+
+        /* Language Switch */
         .language-switch {
             display: flex;
             align-items: center;
@@ -150,10 +218,7 @@
             transform: translateY(-2px);
         }
 
-        .lang-switch-btn:active {
-            transform: scale(0.95);
-        }
-
+        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -282,8 +347,9 @@
             font-weight: 500;
         }
 
+        /* Sections */
         .section {
-            padding: 80px 40px;
+            padding: 100px 40px;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -305,6 +371,18 @@
             display: inline-block;
         }
 
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
         .section-subtitle {
             font-size: 1.1rem;
             color: var(--gray);
@@ -312,6 +390,7 @@
             margin: 0 auto;
         }
 
+        /* Cards Grid */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -325,11 +404,13 @@
             border-radius: 16px;
             padding: 35px;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .card:hover {
             transform: translateY(-10px);
             background: rgba(25, 25, 40, 0.9);
+            border-color: rgba(59, 130, 246, 0.2);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
@@ -352,6 +433,7 @@
             line-height: 1.6;
         }
 
+        /* Tags */
         .tags-container {
             display: flex;
             flex-wrap: wrap;
@@ -377,16 +459,14 @@
             transform: translateY(-2px);
         }
 
-        .tag:active {
-            transform: scale(0.98);
-        }
-
+        /* Contact */
         .contact-info {
             background: rgba(20, 20, 30, 0.8);
             backdrop-filter: blur(10px);
             border-radius: 16px;
             padding: 45px;
             margin-top: 45px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .contact-item {
@@ -403,10 +483,6 @@
         .contact-item:hover {
             background: rgba(255, 255, 255, 0.05);
             transform: translateX(8px);
-        }
-
-        .contact-item:active {
-            transform: translateX(4px);
         }
 
         .contact-icon {
@@ -459,11 +535,6 @@
             box-shadow: 0 8px 20px rgba(59, 130, 246, 0.25);
         }
 
-        .copy-btn:active {
-            transform: scale(0.95);
-            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
-        }
-
         .copy-message {
             color: var(--primary);
             font-weight: 600;
@@ -498,10 +569,7 @@
             box-shadow: 0 8px 20px rgba(37, 211, 102, 0.25);
         }
 
-        .whatsapp-btn:active {
-            transform: scale(0.95);
-        }
-
+        /* Footer */
         .footer {
             text-align: center;
             padding: 40px;
@@ -511,6 +579,7 @@
             margin-top: 80px;
         }
 
+        /* Animations */
         @keyframes float {
             0%, 100% {
                 transform: translateY(0);
@@ -531,6 +600,7 @@
             }
         }
 
+        /* Scroll Animation */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -542,6 +612,7 @@
             transform: translateY(0);
         }
 
+        /* Responsive Design */
         @media (max-width: 1024px) {
             .hero-content {
                 grid-template-columns: 1fr;
@@ -566,19 +637,37 @@
 
         @media (max-width: 768px) {
             .navbar {
-                padding: 15px 25px;
-                flex-direction: column;
-                gap: 15px;
+                padding: 12px 20px;
+            }
+
+            .nav-container {
+                flex-wrap: wrap;
+            }
+
+            .profile-dropdown {
+                order: 1;
             }
 
             .nav-links {
-                gap: 15px;
-                flex-wrap: wrap;
+                order: 3;
+                width: 100%;
                 justify-content: center;
+                margin-top: 15px;
+                display: none;
+            }
+
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .language-switch {
+                order: 2;
             }
 
             .hero {
-                padding: 160px 25px 50px;
+                padding: 120px 25px 50px;
             }
 
             .hero-text h1 {
@@ -620,11 +709,36 @@
             .contact-item:hover {
                 transform: translateY(-5px);
             }
+
+            /* Mobile Menu Toggle */
+            .mobile-menu-toggle {
+                display: none;
+                background: none;
+                border: none;
+                color: var(--primary);
+                font-size: 24px;
+                cursor: pointer;
+                order: 2;
+            }
+
+            @media (max-width: 768px) {
+                .mobile-menu-toggle {
+                    display: block;
+                }
+
+                .nav-links {
+                    display: none;
+                }
+
+                .nav-links.active {
+                    display: flex;
+                }
+            }
         }
 
         @media (max-width: 480px) {
             .hero {
-                padding: 150px 20px 40px;
+                padding: 110px 20px 40px;
             }
 
             .hero-text h1 {
@@ -661,6 +775,15 @@
                 padding: 8px 18px;
                 font-size: 0.85rem;
             }
+
+            .navbar {
+                padding: 10px 15px;
+            }
+
+            .nav-profile-img {
+                width: 40px;
+                height: 40px;
+            }
         }
     </style>
 </head>
@@ -669,22 +792,45 @@
         <div class="gradient-bg"></div>
     </div>
 
+    <!-- Navigation - Updated with Profile Dropdown -->
     <nav class="navbar">
-        <a href="index.html" class="nav-logo">
-            <div class="logo-circle-small">AR</div>
-            <span>Ahmed Radwan</span>
-        </a>
-        <div class="nav-links">
-            <a href="#about" class="nav-link">About</a>
-            <a href="#experience" class="nav-link">Experience</a>
-            <a href="#services" class="nav-link">Services</a>
-            <a href="#contact" class="nav-link">Contact</a>
-        </div>
-        <div class="language-switch">
-            <a href="portfolio-ar.html" class="lang-switch-btn">العربية</a>
+        <div class="nav-container">
+            <!-- Profile Dropdown -->
+            <div class="profile-dropdown">
+                <img src="https://scontent.fcai23-1.fna.fbcdn.net/v/t39.30808-6/621655206_2344021316024708_3178221332365404789_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=wP1PDbMeqlsQ7kNvwH27gdM&_nc_oc=AdlTIo6cMtVMmZaHsCyfmVrMH1_7rez45lrSAWax9obMQSjjAl3UwTn5KGMRbsRM_OA&_nc_zt=23&_nc_ht=scontent.fcai23-1.fna&_nc_gid=975mWmBi3Bpgk_w0rayDvw&oh=00_AfvT_IcTAYCx1dxjd26M-8kFN-aTTDa9-rIKLK8UUcwG_w&oe=698EE75B" 
+                     alt="Ahmed Radwan"
+                     class="nav-profile-img"
+                     onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22><rect width=%22400%22 height=%22400%22 fill=%22%231a1a2e%22/><text x=%22200%22 y=%22200%22 font-family=%22Inter%22 font-size=%2248%22 fill=%22%233b82f6%22 text-anchor=%22middle%22 dy=%22.3em%22>AR</text></svg>'">
+                <div class="dropdown-content">
+                    <a href="index.html"><i class="fas fa-home"></i> Home Page</a>
+                    <a href="#about"><i class="fas fa-user"></i> About Me</a>
+                    <a href="#experience"><i class="fas fa-chart-line"></i> Experience</a>
+                    <a href="#services"><i class="fas fa-cogs"></i> Services</a>
+                    <a href="#contact"><i class="fas fa-envelope"></i> Contact Me</a>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Navigation Links -->
+            <div class="nav-links" id="navLinks">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+
+            <!-- Language Switch -->
+            <div class="language-switch">
+                <a href="portfolio-ar.html" class="lang-switch-btn">العربية</a>
+            </div>
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <div class="profile-container fade-in">
@@ -721,6 +867,7 @@
         </div>
     </section>
 
+    <!-- About Section -->
     <section id="about" class="section">
         <div class="section-header fade-in">
             <h2 class="section-title">Professional Summary</h2>
@@ -756,6 +903,7 @@
         </div>
     </section>
 
+    <!-- Experience Section -->
     <section id="experience" class="section">
         <div class="section-header fade-in">
             <h2 class="section-title">Financial Experience</h2>
@@ -783,6 +931,7 @@
         </div>
     </section>
 
+    <!-- Services Section -->
     <section id="services" class="section">
         <div class="section-header fade-in">
             <h2 class="section-title">What I Do</h2>
@@ -829,6 +978,7 @@
         </div>
     </section>
 
+    <!-- Contact Section -->
     <section id="contact" class="section">
         <div class="section-header fade-in">
             <h2 class="section-title">Contact Information</h2>
@@ -865,12 +1015,40 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer class="footer">
         <p>© 2026 Ahmed Radwan. All rights reserved.</p>
         <p style="margin-top: 10px; color: var(--primary); font-weight: 500;">Performance Marketer | Media Buyer</p>
     </footer>
 
     <script>
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileMenuToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                navLinks.classList.remove('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Scroll Animation
         const fadeElements = document.querySelectorAll('.fade-in');
         
         const observer = new IntersectionObserver((entries) => {
@@ -888,6 +1066,7 @@
             observer.observe(element);
         });
 
+        // Copy Email Function
         function copyEmail() {
             const email = document.getElementById('emailText').textContent;
             const message = document.getElementById('copyMessage');
@@ -916,6 +1095,7 @@
             });
         }
 
+        // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -929,16 +1109,49 @@
                         top: targetElement.offsetTop - 100,
                         behavior: 'smooth'
                     });
+                    
+                    // Close mobile menu after clicking
+                    if (window.innerWidth <= 768) {
+                        navLinks.classList.remove('active');
+                        const icon = mobileMenuToggle.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
                 }
             });
         });
 
+        // Prevent horizontal scroll
         document.addEventListener('DOMContentLoaded', function() {
             document.body.style.overflowX = 'hidden';
             window.addEventListener('resize', function() {
                 document.body.style.overflowX = 'hidden';
             });
         });
+
+        // Add active class to current section in navigation
+        const sections = document.querySelectorAll('section[id]');
+        const navLinksItems = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (scrollY >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinksItems.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
     </script>
 </body>
-</html>
+    </html>
